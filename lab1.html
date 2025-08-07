@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Gallery</title>
     <style>
         body {
             text-align: center;
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #23b8f8 10%, #0b0a0a 100%);
+            background: linear-gradient(135deg, #4c0795 10%, #0b0a0a 100%);
             min-height: 100vh;
         }
+
         .button-group {
             text-align: center;
             margin-bottom: 20px;
         }
+
         button {
             margin: 5px;
             padding: 8px 15px;
@@ -24,14 +27,17 @@
             border-radius: 5px;
             transition: background 0.2s, color 0.2s;
         }
+
         button:hover {
             background: #b2d7e4;
             color: #222;
         }
+
         button.active {
             background: #4c9eaf;
             color: white;
         }
+
         .gallery {
             display: flex;
             flex-wrap: wrap;
@@ -40,6 +46,7 @@
             max-width: 500px;
             margin: 0 auto;
         }
+
         .gallery img {
             width: 200px;
             height: 150px;
@@ -47,11 +54,12 @@
             margin: 0;
             opacity: 1;
             transition: opacity 0.3s;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             background: #f8f8f8;
             display: block;
         }
+
         .gallery img.hide {
             opacity: 0;
             pointer-events: none;
@@ -59,6 +67,7 @@
         }
     </style>
 </head>
+
 <body>
     <h1 style="text-align:center;">This is a gallery of pictures</h1>
     <h2 style="text-align:center;">This showcases the images based on the followed categories.</h2>
@@ -79,11 +88,11 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("allBtn").onclick = function() { filter('all'); };
-            document.getElementById("natureBtn").onclick = function() { filter('nature'); };
-            document.getElementById("animalsBtn").onclick = function() { filter('animals'); };
-            document.getElementById("carBtn").onclick = function() { filter('car'); };
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("allBtn").onclick = function () { filter('all'); };
+            document.getElementById("natureBtn").onclick = function () { filter('nature'); };
+            document.getElementById("animalsBtn").onclick = function () { filter('animals'); };
+            document.getElementById("carBtn").onclick = function () { filter('car'); };
         });
 
         function filter(tag) {
@@ -91,13 +100,13 @@
             document.querySelectorAll('.button-group button').forEach(btn => {
                 btn.classList.remove('active');
             });
-            if(tag === 'all') {
+            if (tag === 'all') {
                 document.getElementById("allBtn").classList.add('active');
-            } else if(tag === 'nature') {
+            } else if (tag === 'nature') {
                 document.getElementById("natureBtn").classList.add('active');
-            } else if(tag === 'animals') {
+            } else if (tag === 'animals') {
                 document.getElementById("animalsBtn").classList.add('active');
-            } else if(tag === 'car') {
+            } else if (tag === 'car') {
                 document.getElementById("carBtn").classList.add('active');
             }
 
