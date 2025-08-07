@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-// funtion to find the absolute value of a number with pointers
+// funtion to find the absolute value of a number with pointers*
 void abso(int *n)
 {
     if (*n < 0) {
