@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gallery</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #23b8f8 10%, #0b0a0a 100%);
+            min-height: 100vh;
+        }
+        .button-group {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        button {
+            margin: 5px;
+            padding: 8px 15px;
+            cursor: pointer;
+            border: none;
+            background: #e0e0e0;
+            color: #333;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background 0.2s, color 0.2s;
+        }
+        button:hover {
+            background: #b2d7e4;
+            color: #222;
+        }
+        button.active {
+            background: #4c9eaf;
+            color: white;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .gallery img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            margin: 0;
+            opacity: 1;
+            transition: opacity 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            background: #f8f8f8;
+            display: block;
+        }
+        .gallery img.hide {
+            opacity: 0;
+            pointer-events: none;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center;">This is a gallery of pictures</h1>
+    <h2 style="text-align:center;">This showcases the images based on the followed categories.</h2>
+    <p style="text-align:center;">Choose ur interest!</p>
+    <div class="button-group">
+        <button id="allBtn" class="active">SELECT All</button>
+        <button id="natureBtn">Nature</button>
+        <button id="animalsBtn">Animals</button>
+        <button id="carBtn">Car</button>
+    </div>
+    <div class="gallery" id="gallery">
+        <img src="nature1.jpg" data-tags="nature">
+        <img src="animal.jpg" data-tags="animals">
+        <img src="car.jpg" data-tags="car">
+        <img src="nature2.jpg" data-tags="nature">
+        <img src="animal2.jpg" data-tags="animals">
+        <img src="car2.jpg" data-tags="car">
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("allBtn").onclick = function() { filter('all'); };
+            document.getElementById("natureBtn").onclick = function() { filter('nature'); };
+            document.getElementById("animalsBtn").onclick = function() { filter('animals'); };
+            document.getElementById("carBtn").onclick = function() { filter('car'); };
+        });
+
+        function filter(tag) {
+            // Set active button
+            document.querySelectorAll('.button-group button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            if(tag === 'all') {
+                document.getElementById("allBtn").classList.add('active');
+            } else if(tag === 'nature') {
+                document.getElementById("natureBtn").classList.add('active');
+            } else if(tag === 'animals') {
+                document.getElementById("animalsBtn").classList.add('active');
+            } else if(tag === 'car') {
+                document.getElementById("carBtn").classList.add('active');
+            }
+
+            // Show/hide images based on tag
+            const images = document.querySelectorAll('.gallery img');
+            let shown = 0;
+            images.forEach(img => {
+                if (tag === 'all' || img.dataset.tags === tag) {
+                    img.classList.remove('hide');
+                    img.style.display = 'block';
+                    setTimeout(() => { img.style.opacity = 1; }, 10);
+                    shown++;
+                } else {
+                    img.style.opacity = 0;
+                    img.classList.add('hide');
+                    img.style.display = 'none';
+                }
+            });
+
+            // For filtered view, arrange images next to each other (2 per row)
+            const gallery = document.getElementById('gallery');
+            if (tag === 'all') {
+                gallery.style.flexWrap = 'wrap';
+            } else {
+                gallery.style.flexWrap = 'wrap';
+            }
+        }
+    </script>
